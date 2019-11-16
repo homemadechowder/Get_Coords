@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-database.js"></script>
+    
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+
+    <title>Document</title>
+</head>
+<body>
+    <div class = "confirm">
+
+    </div>
+    
+    <script>
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyDkeLhFj7ZaasnJB0BDICRPuJ3J83ocqBE",
+        authDomain: "hello-world-3-3b747.firebaseapp.com",
+        databaseURL: "https://hello-world-3-3b747.firebaseio.com",
+        projectId: "hello-world-3-3b747",
+        storageBucket: "hello-world-3-3b747.appspot.com",
+        messagingSenderId: "816710528701",
+        appId: "1:816710528701:web:e7a4fc68859381850e11d4",
+        measurementId: "G-PH4J8E25Y7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    var database = firebase.database();
+    
+    
+    getLocation();
+    
+    function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition); 
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+   
+    }
+
+    function showPosition(position) {
+        // x.innerHTML = "Latitude: " + position.coords.latitude + 
+        // "<br>Longitude: " + position.coords.longitude;
+
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        console.log(lat+""+lng + "Location Get....ok");
+
+        database.ref().set({
+        lat: lat,
+        lng: lng
+      })
+        
+    }
+    </script>
+</body>
+</html>
